@@ -1,23 +1,4 @@
-var app = angular.module("FriendApp", ["ngRoute"]);
-
-//adding facebook API stuff 
-window.fbAsyncInit = function() {
-    FB.init({ 
-      appId: '660451670770089',
-      status: true, 
-      cookie: true, 
-      xfbml: true,
-      version: 'v2.4'
-    });
-};
-
-(function(d, s, id){
-	var js, fjs = d.getElementsByTagName(s)[0];
-	if (d.getElementById(id)) {return;}
-	js = d.createElement(s); js.id = id;
-	js.src = "//connect.facebook.net/en_US/sdk.js";
-	fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));
+var app = angular.module("FriendApp", ["ngRoute", "firebase"]);
 
 //config
 app.config(function($routeProvider) {
@@ -25,27 +6,60 @@ app.config(function($routeProvider) {
 		templateUrl: "templates/login.html"
 	})
   //home page
-});
-
+  	$routeProvider.when("/home",{
+  		templateUrl: "templates/home.html"
+  	})
+}); //end of config
 
 //login page controller
-app.controller("loginCtrl", function($scope,$http,$window){
-	$scope.FBlogin=function(){
-		FB.login(function(response){
-			if (response.authResponse){
-				console.log("welcome");
-				FB.api('/me',function(response){
-					console.log("good to see you" + response.name);
-				});
-			} else {
-				console.log("not authorize");
-			}
-		})
-	};
+app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$http){
+	//checking if user is signed in or not
+	var auth = $firebaseAuth();
+	auth.$onAuthStateChanged(function(firebaseUser){
+		if (firebaseUser){
+			$location.path("/home");
+		}
+	});
 
+	//Sign into facebook
+	$scope.FBlogin = function() {
+		auth.$signInWithPopup("facebook").catch(function(error){
+			console.log("Error");
+		})
+	}
 }); //end of loginCtrl
 
 //home page controller
-app.controller("homeCtrl", function($scope,$http,$window){
+app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $firebaseArray){
+	
+	//checking if user is signed in or not
+	var auth = $firebaseAuth();
+	auth.$onAuthStateChanged(function(firebaseUser) {
+    if (firebaseUser) {
+      $scope.firebaseUser = firebaseUser;
+      console.log(firebaseUser);
+    } else {
+      console.log(firebaseUser);
+      $location.path("/");
+    }
+  });
 
+	//sign out button 
+	$scope.logout = function() {
+    auth.$signOut();
+    $location.path("/");
+  }
 }); //end of homeCtrl 
+
+
+
+
+
+
+
+
+
+
+
+
+
