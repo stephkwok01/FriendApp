@@ -13,6 +13,14 @@ app.config(function($routeProvider) {
 
 //login page controller
 app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$http){
+
+	var images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg',
+	'13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg' ];
+	var randomNumber = Math.floor(Math.random() * images.length);
+	console.log(randomNumber);
+	$scope.backgroundImage = {
+		'background-image' :'url(./Images/'+ randomNumber + '.jpg)',
+	}
 	//checking if user is signed in or not
 	var auth = $firebaseAuth();
 	auth.$onAuthStateChanged(function(firebaseUser){
@@ -27,6 +35,8 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$http){
 			console.log("Error");
 		})
 	}
+
+	
 }); //end of loginCtrl
 
 //home page controller
