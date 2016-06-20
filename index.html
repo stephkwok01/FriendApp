@@ -3,13 +3,25 @@
 <head>
 	<meta charset="UTF-8">
 	<title> Friend App </title> 
-	<!-- Angular -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
-	<!-- JavaScrip -->
-	<script src="./script.js"></script>
-	<!-- CSS -->
+	<!-- bootstrap and stylesheet -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="./style.css">
+	<!-- Angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-route.js"></script>
+	<!-- Initialising firebase -->
+	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
+	<script>
+  var config = {
+  	apiKey: "AIzaSyAmtAa4e1kAyy4De0zTBAA_UcYsqvWNu5M",
+  	authDomain: "friendapp-70829.firebaseapp.com",
+  	databaseURL: "https://friendapp-70829.firebaseio.com",
+  	storageBucket: "friendapp-70829.appspot.com",
+  };
+  firebase.initializeApp(config);
+  </script>
+  <script src="./script.js"></script>
 </head>
 
 <body ng-app="FriendApp">
