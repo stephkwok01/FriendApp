@@ -14,15 +14,15 @@ app.config(function($routeProvider) {
 //login page controller
 app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$http,$window){
 	//Facebook API
-	$window.fbAsyncInit = function() {
-   FB.init({ 
-     appId: '{your-app-id}',
-     status: true, 
-     cookie: true, 
-     xfbml: true,
-     version: 'v2.4'
-   });
-	};
+	// $window.fbAsyncInit = function() {
+	// 	FB.init({ 
+	// 	    appId: '660451670770089',
+	// 	    status: true, 
+	// 	    cookie: true, 
+	// 	    xfbml: true,
+	// 	    version: 'v2.4'
+	//    });
+	// };
 
 	// adding background images
 	var images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg',
@@ -52,7 +52,7 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$http,$windo
 //home page controller
 app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $firebaseArray){
 	//making arrays of objects in firebasef
-	var friendRef = firebase.database().ref().child("Friends");
+	var friendRef = firebase.database().ref().child("friends");
 
 	//checking if user is signed in or not
 	var auth = $firebaseAuth();
@@ -63,8 +63,8 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 			// $scope.existingUsers = $firebaseArray(friendRef);
 			// console.log($scope.existingUsers);
 			//add to firebase
-			var randomFriend = AddToFirebase($scope.firebaseUser); 
-			friendRef.push(randomFriend);
+			var randomFriend = addToFirebase($scope.firebaseUser); 
+			friendRef.$add(randomFriend);
 		}
 		else {
 			$location.path("/");
@@ -80,7 +80,7 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 
 //functions
 //adding to firebase
-function AddToFirebase(friend) {
+function addToFirebase(friend) {
 	var friendObj = {
 		displayName : friend.displayName,
 		uid : friend.uid,
