@@ -12,6 +12,10 @@
 	<!-- Initialising firebase -->
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 	<script src="https://cdn.firebase.com/libs/angularfire/2.0.0/angularfire.min.js"></script>
+
+	<!--facebook?-->
+	<!-- <script src="./angular-facebook-master/dist/angular-facebook.min.js"></script> -->
+	
 	<script>
   var config = {
   	apiKey: "AIzaSyAmtAa4e1kAyy4De0zTBAA_UcYsqvWNu5M",
@@ -25,6 +29,23 @@
 </head>
 
 <body ng-app="FriendApp">
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '660451670770089',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
 	<div ng-view></div>
 	
 </body>

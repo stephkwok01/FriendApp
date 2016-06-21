@@ -1,15 +1,63 @@
 var app = angular.module("FriendApp", ["ngRoute", "firebase"]);
 
+
+//attempt 2 at this bullshit
+// app.factory('facebookService', function($q) {
+// 	return {
+// 		getMyLastName: function() {
+// 			var deferred = $q.defer();
+// 			FB.api('/me', {
+// 				fields: 'last_name'
+// 			}, function(response) {
+// 				if (!response || response.error) {
+// 					console.log("where am i")
+// 					deferred.reject('Error occured');
+// 				} else {
+// 					deferred.resolve(response);
+// 				}
+// 			});
+// 			return deferred.promise;
+// 		}
+// 	}
+// });
+
+//end of this shitty attmept
+
 //config
 app.config(function($routeProvider) {
 	$routeProvider.when("/", {
 		templateUrl: "templates/login.html"
 	})
   //home page
-  	$routeProvider.when("/home",{
-  		templateUrl: "templates/home.html"
-  	})
+  $routeProvider.when("/home",{
+  	templateUrl: "templates/home.html"
+  })
 }); //end of config
+
+//attempt 2 at this bullshit
+// app.factory('facebookService', function($q) {
+// 	return {
+// 		getMyLastName: function() {
+// 			var deferred = $q.defer();
+// 			FB.api('/me', {
+// 				fields: 'last_name'
+// 			}, function(response) {
+// 				if (!response || response.error) {
+// 					console.log("where am i")
+// 					deferred.reject('Error occured');
+// 				} else {
+// 					deferred.resolve(response);
+// 				}
+// 			});
+// 			return deferred.promise;
+// 		}
+// 	}
+// });
+
+//end of this shitty attmept
+
+
+
 
 //login page controller
 app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$http){
@@ -33,10 +81,23 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$http){
 	$scope.FBlogin = function() {
 		auth.$signInWithPopup("facebook").catch(function(error){
 			console.log("Error");
-		})
+			// $scope.login = function() {
+   //    // From now on you can use the Facebook service just as Facebook api says
+   //    Facebook.login(function(response) {
+   //      console.log(response);
+    //   });
+    // };
+})
 	}
 
-	
+	// $scope.login = function() {
+ //      // From now on you can use the Facebook service just as Facebook api says
+ //      Facebook.login(function(response) {
+ //        console.log(response);
+ //      });
+ //    };
+
+
 }); //end of loginCtrl
 
 //home page controller
@@ -45,20 +106,54 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 	//checking if user is signed in or not
 	var auth = $firebaseAuth();
 	auth.$onAuthStateChanged(function(firebaseUser) {
-    if (firebaseUser) {
-      $scope.firebaseUser = firebaseUser;
-      console.log(firebaseUser);
-    } else {
-      console.log(firebaseUser);
-      $location.path("/");
-    }
-  });
+		if (firebaseUser) {
+			$scope.firebaseUser = firebaseUser;
+			console.log(firebaseUser);
+
+			// console.log(facebookService);
+			//plz bull shit work
+			// $scope.getMyLastName = function() {
+			// 	console.log(facebookService);
+			// 	facebookService.getMyLastName() 
+			// 	.then(function(response) {
+			// 		console.log(response.last_name);
+			// 	}
+			// 	);
+			// };
+	//fuuuuccck
+} else {
+	console.log(firebaseUser);
+	$location.path("/");
+}
+});
+
+	//plz bull shit work
+	// $scope.getMyLastName = function() {
+	// 	console.log(facebookService.getMyLastName() );
+	// 	facebookService.getMyLastName() 
+	// 	.then(function(response) {
+	// 		console.log(response.last_name);
+	// 	}
+	// 	);
+	// };
+	//fuuuuccck
+	$scope.loadFriends = function() {
+
+          FB.api('/me/friends', function(response) {
+            $scope.$apply(function() {
+              $scope.myFriends = response.data;
+              console.log($scope.myFriends);
+            });
+
+          });
+        };
+
 
 	//sign out button 
 	$scope.logout = function() {
-    auth.$signOut();
-    $location.path("/");
-  }
+		auth.$signOut();
+		$location.path("/");
+	}
 }); //end of homeCtrl 
 
 
