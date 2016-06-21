@@ -120,7 +120,6 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 	auth.$onAuthStateChanged(function(firebaseUser) {
 		if (firebaseUser) {
 			$scope.firebaseUser = firebaseUser;
-
 			//checking if user exists already
 			// $scope.existingUsers = $firebaseArray(friendRef);
 			// console.log($scope.existingUsers);
