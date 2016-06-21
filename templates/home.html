@@ -1,0 +1,129 @@
+<div class="row" ng-controller="homeCtrl">
+
+	 <div class="col-md-3 statspanel">
+			<h4 class="logo"> FriendsApp </h4>
+			<img class="profile-pic" src="./images/profilepic.jpg"/>
+			<br>
+<!-- LOCATION -->
+			<div class="row">
+				<div class="col-md-12 location city">
+				<p class="locationtext"> city </p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 location region">
+				<p class="locationtext"> region </p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 location country">
+					<p class="locationtext"> country </p>
+				</div>
+			</div>
+<!-- DEGREE OF SEPARATION -->
+			<div class="row">
+				<div class="col-md-12 degree first">
+					<p class="degreetext"> friends </p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 degree second">
+					<p class="degreetext"> mutual friends </p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 degree third">
+					<p class="degreetext"> connections </p>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-md-12">
+					<button type="button" class="btn-default logoutbtn"><a ng-click="logout()">Logout</a> </button> 
+				</div>
+			</div>
+			
+		</div>		
+			 
+			
+		<div class="col-md-9 background">
+			<div class="row">
+				<div class="col-md-12 map"></div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 scroll">
+					
+					<div class="row friendblurb">
+						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-md-9">
+							<h3 class="name"> Jan Pickard </h3>
+							<p class="currentlocation"> Cape Town </p>
+							<p class="currentlocation"> Facebook Friends </p>
+						</div>
+						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+					</div>
+<!-- THESE DIVS BELOW WILL DISAPPEAR AND BE ADDED ON BY THE AGULAR SCRIPT -->
+					<div class="row friendblurb">
+						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-md-9">
+							<h3 class="name"> Jan Pickard </h3>
+							<p class="currentlocation"> Cape Town </p>
+							<p class="currentlocation"> Facebook Friends </p>
+						</div>
+						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+					</div>
+
+					<div class="row friendblurb degreemutual">
+						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-md-9">
+							<h3 class="name"> Jan Pickard </h3>
+							<p class="currentlocation"> Cape Town </p>
+							<p class="currentlocation"> You have mutual Facebook Friends </p>
+						</div>
+						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+					</div>
+
+					<div class="row friendblurb degreemutual">
+						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-md-9">
+							<h3 class="name"> Jan Pickard </h3>
+							<p class="currentlocation"> Cape Town </p>
+							<p class="currentlocation"> You have mutual Facebook Friends </p>
+						</div>
+						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+					</div>
+
+					<div class="row friendblurb degreemutual">
+						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-md-9">
+							<h3 class="name"> Jan Pickard </h3>
+							<p class="currentlocation"> Cape Town </p>
+							<p class="currentlocation"> You have mutual Facebook Friends </p>
+						</div>
+						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+					</div>
+
+					<div class="row friendblurb degreemutual">
+						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-md-9">
+							<h3 class="name"> Jan Pickard </h3>
+							<p class="currentlocation"> Cape Town </p>
+							<p class="currentlocation"> You have mutual Facebook Friends </p>
+						</div>
+						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+					</div>	
+		
+					<div class="row friendblurb degreeconnection">
+						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-md-9">
+							<h3 class="name"> Jan Pickard </h3>
+							<p class="currentlocation"> Cape Town </p>
+							<p class="currentlocation"> You have a 3rd degree Facebook connection </p>
+						</div>
+						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+					</div>
+				</div>
+			</div>	
+		</div>
+</div>
