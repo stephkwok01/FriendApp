@@ -1,28 +1,5 @@
 var app = angular.module("FriendApp", ["ngRoute", "firebase"]);
 
-
-//attempt 2 at this bullshit
-// app.factory('facebookService', function($q) {
-// 	return {
-// 		getMyLastName: function() {
-// 			var deferred = $q.defer();
-// 			FB.api('/me', {
-// 				fields: 'last_name'
-// 			}, function(response) {
-// 				if (!response || response.error) {
-// 					console.log("where am i")
-// 					deferred.reject('Error occured');
-// 				} else {
-// 					deferred.resolve(response);
-// 				}
-// 			});
-// 			return deferred.promise;
-// 		}
-// 	}
-// });
-
-//end of this shitty attmept
-
 //config
 app.config(function($routeProvider) {
 	$routeProvider.when("/", {
@@ -34,43 +11,9 @@ app.config(function($routeProvider) {
   })
 }); //end of config
 
-//attempt 2 at this bullshit
-// app.factory('facebookService', function($q) {
-// 	return {
-// 		getMyLastName: function() {
-// 			var deferred = $q.defer();
-// 			FB.api('/me', {
-// 				fields: 'last_name'
-// 			}, function(response) {
-// 				if (!response || response.error) {
-// 					console.log("where am i")
-// 					deferred.reject('Error occured');
-// 				} else {
-// 					deferred.resolve(response);
-// 				}
-// 			});
-// 			return deferred.promise;
-// 		}
-// 	}
-// });
-
-//end of this shitty attmept
-
-
-
-
+var access = '';
 //login page controller
-app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$http,$window){
-	//Facebook API
-	$window.fbAsyncInit = function() {
-   FB.init({ 
-     appId: '{your-app-id}',
-     status: true, 
-     cookie: true, 
-     xfbml: true,
-     version: 'v2.4'
-   });
-	};
+app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObject,$http,$window){
 
 	// adding background images
 	var images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg',
@@ -91,42 +34,60 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$http,$windo
 
 	//Sign into facebook
 	$scope.FBlogin = function() {
-		auth.$signInWithPopup("facebook").catch(function(error){
-			console.log("Error");
-			// $scope.login = function() {
-   //    // From now on you can use the Facebook service just as Facebook api says
-   //    Facebook.login(function(response) {
-   //      console.log(response);
-    //   });
-    // };
-})
+		
+		var provider = new firebase.auth.FacebookAuthProvider();
+		provider.addScope('user_friends');
+		auth.$signInWithPopup(provider).then(function(result) {
+			console.log(result);
+			var fbUser = result.user;
+			// console.log(result.credential.accessToken);
+			access = result.credential.accessToken;
+			
+			//store this in firebase added by Gabe
+			var ref = firebase.database().ref().child('Friends').child(fbUser.uid);
+			var user = $firebaseObject(ref);
+			user.uid = fbUser.uid;
+			user.name = fbUser.displayName;
+			user.photo = fbUser.photoURL;
+			user.token = access;
+			user.$save();
+			//end of Gabe code
+		});
 	};
-
-	// $scope.login = function() {
- //      // From now on you can use the Facebook service just as Facebook api says
- //      Facebook.login(function(response) {
- //        console.log(response);
- //      });
- //    };
 }); //end of loginCtrl
 
 //home page controller
-app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $firebaseArray){
+app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $firebaseArray, $firebaseObject){
 	//making arrays of objects in firebasef
 	var friendRef = firebase.database().ref().child("Friends");
+
+	//get accesstoken from firebase
 
 	//checking if user is signed in or not
 	var auth = $firebaseAuth();
 	auth.$onAuthStateChanged(function(firebaseUser) {
-		if (firebaseUser) {
-			$scope.firebaseUser = firebaseUser;
 
-			//checking if user exists already
-			// $scope.existingUsers = $firebaseArray(friendRef);
-			// console.log($scope.existingUsers);
-			//add to firebase
-			var randomFriend = AddToFirebase($scope.firebaseUser); 
-			friendRef.push(randomFriend);
+		if (firebaseUser) {
+			// console.log(auth.$getAuth());
+
+			$scope.firebaseUser = firebaseUser;
+			// added code from Gabe --> getting the accses token from the database so that
+			// you don't have to relogin in everytime you want use the site
+			var ref = firebase.database().ref().child("Friends").child(firebaseUser.uid);
+			var user = $firebaseObject(ref);
+			user.$loaded().then(function() {
+			// end of added code
+				console.log("user",user);
+				var token = user.token;
+				FB.api('/me', 'get', {access_token: token}, function(result){
+					console.log(result);
+				})
+				FB.api('/me/friends', 'get', {access_token: token},  function(response) {
+	            	console.log(response);
+	             //  $scope.myFriends = response.data;
+	            });
+
+			});
 		}
 		else {
 			$location.path("/");
@@ -140,16 +101,6 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 	}
 }); //end of homeCtrl 
 
-//functions
-//adding to firebase
-function AddToFirebase(friend) {
-	var friendObj = {
-		displayName : friend.displayName,
-		uid : friend.uid,
-		photo : friend.photoURL,
-	};
-	return friendObj;
-}
 
 				
 
