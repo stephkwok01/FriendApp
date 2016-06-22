@@ -112,15 +112,33 @@ body,  {
     text-align: center;
 }
 
+.locationtext:hover {
+    font-size: 26px;
+    transition: 0.2;
+    color: #D18E8F;
+}
+
 .location-number {
     font-size: 24px;
     color: #ffffff;
 }
 
+.location-number:hover {
+    font-size: 30px;
+    transition: 0.2;
+}
+
+
+
 .degree-number {
     color: #B9D9B4;
     font-size: 26px;
     font-family: Raleway;
+}
+
+.degree-number:hover {
+    color: #D18E8F;
+    font-size: 30px;
 }
 
 .degree {
@@ -134,6 +152,10 @@ body,  {
     font-size: 20px;
     font-family: Raleway;
     text-align: center;
+}
+
+.degreetext:hover {
+    font-size: 24px;
 }
 
 .logout {
