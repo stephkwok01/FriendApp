@@ -2,51 +2,67 @@
 
 	 <div class="col-md-3 statspanel">
 			<h4 class="logo"> FriendsApp </h4>
-			<img class="profile-pic" src="./images/profilepic.jpg"/>
+			<img class="profile-pic" src="{{firebaseUser.photoURL}}"/>
 			<br>
+
+			<div class="row">
+				<div class="col-md-12">
+					<p class="username"> {{firebaseUser.displayName}} </p>
+				</div>
+			</div>
+			
 <!-- LOCATION -->
 			<div class="row">
-				<div class="col-md-12 location city">
-				<p class="locationtext"> city </p>
+				<div class="col-md-12 space">
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12 location region">
-				<p class="locationtext"> region </p>
+				<div class="col-md-12 location">
+				<p class="locationtext"> city <span class="location-number">17</span> </p>
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-md-12 location country">
-					<p class="locationtext"> country </p>
+				<div class="col-md-12 location">
+				<p class="locationtext"> region <span class="location-number">34</span></p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12 location">
+					<p class="locationtext"> country <span class="location-number">45</span></p>
 				</div>
 			</div>
 <!-- DEGREE OF SEPARATION -->
 			<div class="row">
+				<div class="col-md-12 space">
+				</div>
+			</div>
+			<div class="row">
 				<div class="col-md-12 degree first">
-					<p class="degreetext"> friends </p>
+					<p class="degreetext"> friends <span class="degree-number">16</span></p>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12 degree second">
-					<p class="degreetext"> mutual friends </p>
+					<p class="degreetext"> mutual friends <span class="degree-number">35</span></p>
 				</div>
 			</div>
+
+<!-- LOGOUT BUTTON -->	
 			<div class="row">
-				<div class="col-md-12 degree third">
-					<p class="degreetext"> connections </p>
+				<div class="col-md-12 logoutspace">
 				</div>
-			</div>
-			
+			</div>		
 			<div class="row">
 				<div class="col-md-12 logout">
-					<button type="button" class="btn-default logoutbtn"><a ng-click="logout()">Logout</a> </button> 
+					<button class="logoutbtn"><a ng-click="logout()">logout</a> </button> 
 				</div>
 			</div>
 			
 		</div>		
 			 
 			
-		<div class="col-md-9 background">
+		<div class="col-md-9 feedcol">
 			<div class="row">
 				<div class="col-md-12 map"></div>
 			</div>
@@ -57,7 +73,7 @@
 					<div class="row friendblurb">
 						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
 						<div class="col-md-9">
-							<h3 class="name"> Jan Pickard </h3>
+							<h3 class="name"> Stella Pickard </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> Facebook Friends </p>
 						</div>
@@ -67,7 +83,7 @@
 					<div class="row friendblurb">
 						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
 						<div class="col-md-9">
-							<h3 class="name"> Jan Pickard </h3>
+							<h3 class="name"> Steph Kwok </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> Facebook Friends </p>
 						</div>
@@ -77,7 +93,7 @@
 					<div class="row friendblurb degreemutual">
 						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
 						<div class="col-md-9">
-							<h3 class="name"> Jan Pickard </h3>
+							<h3 class="name"> Mickey Mouse </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> You have mutual Facebook Friends </p>
 						</div>
@@ -87,17 +103,17 @@
 					<div class="row friendblurb degreemutual">
 						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
 						<div class="col-md-9">
-							<h3 class="name"> Jan Pickard </h3>
+							<h3 class="name"> Boozy Suzy </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> You have mutual Facebook Friends </p>
 						</div>
 						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
 					</div>
 
-					<div class="row friendblurb degreemutual">
+					<div class="row friendblurb">
 						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
 						<div class="col-md-9">
-							<h3 class="name"> Jan Pickard </h3>
+							<h3 class="name"> E.J Elliot </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> You have mutual Facebook Friends </p>
 						</div>
