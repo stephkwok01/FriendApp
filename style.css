@@ -4,234 +4,211 @@
 
 html,
 body,  {
-    width: 100%;
-    height: 100%;
+   width: 100%;
+   height: 100%;
 }
 
 .backgroundlogin {
-	display: table;
-    position: absolute;
-   	width: 100%;
-    height: 100%;
-    background: no-repeat center center scroll;
+    display: table;
+   position: absolute;
+      width: 100%;
+   height: 100%;
+   background: no-repeat center center scroll;
 }
 
 .text-vertical-center {
-    display: table-cell;
-    text-align: center;
-    vertical-align: middle;
-    color: white;
+   display: table-cell;
+   text-align: center;
+   vertical-align: middle;
+   color: white;
 }
 
 .text-vertical-center h1 {
-    margin: 0;
-    padding: 0;
-    font-size: 4.5em;
-    font-weight: 700;
+   margin: 0;
+   padding: 0;
+   font-size: 4.5em;
+   font-weight: 700;
 }
 
 .welcome {
-    font-family: Grand Hotel;
+   font-family: Grand Hotel;
 }
 
 .loginbtn {
-    padding: 10px;
-    padding-left: 15px;
-    padding-right: 15px;
-    background-color: white;
-    opacity: 0.6;
-    border: solid 2px #ffffff;
-    color: #2A363B;
-    border-radius: 2px;
-    font-weight: bold;
+   padding: 10px;
+   padding-left: 15px;
+   padding-right: 15px;
+   background-color: white;
+   opacity: 0.6;
+   border: solid 2px #ffffff ;
+   color: #2A363B ;
+   border-radius: 2px;
+   font-weight: bold;
 }
 
 /*STYLING FOR HOME PAGE */
 
 .container {
-    margin : 0;
-    width: 100%;
-    padding: 0;
-    height: 100%;
+   margin : 0;
+   width: 100%;
+   padding: 0;
+   height: 100%;
 }
 
 .statspanel {
-    background-color: #288D85;
-    height: 830px;
+   background-color: #288D85 ;
+   height: 830px;
 }
 
 .map {
-    background-image: url('./images/covermap.jpg');
-    height: 200px;
-    margin-bottom: 20px;
+   background-image: url('./images/covermap.jpg');
+   height: 200px;
+   margin-bottom: 20px;
 }
 
 .logo {
-    font-family: Grand Hotel;
-    text-align: center;
-    color: white;
-    font-size: 40px;
-    padding-top: 15px;
-    padding-bottom: 20px;
+   font-family: Grand Hotel;
+   text-align: center;
+   color: white;
+   font-size: 40px;
+   padding-top: 15px;
+   padding-bottom: 20px;
 }
 
 .profile-pic {
-    max-height: 160px;
-    max-width: 160px;
-    border-radius: 100%;
-    border: 2px solid #B9D9B4;
-    display: block;
-    margin: auto;
+   max-height: 160px;
+   max-width: 160px;
+   border-radius: 100%;
+   border: 2px solid #B9D9B4 ;
+   display: block;
+   margin: auto;
 }
 
 .username {
-    text-align: center;
-    color: #D18E8F;
-    font-size: 30px;
-    font-family: Grand Hotel;
+   text-align: center;
+   color: #D18E8F ;
+   font-size: 30px;
+   font-family: Grand Hotel;
 }
 
 .space {
-    height: 40px;
+   height: 40px;
 }
 
 .logoutspace {
-    height: 120px;
+   height: 120px;
 }
 
 .location {
-    background-color: #288D85;
-    display: block;
-    margin: auto;
+   background-color: #288D85 ;
+   display: block;
+   margin: auto;
 }
 
 .locationtext {
-    color: #B9D9B4;
-    font-size: 20px;
-    font-family: Raleway;
-    text-align: center;
-}
-
-.locationtext:hover {
-    font-size: 26px;
-    transition: 0.2;
-    color: #D18E8F;
+   color: #B9D9B4 ;
+   font-size: 20px;
+   font-family: Raleway;
+   text-align: center;
 }
 
 .location-number {
-    font-size: 24px;
-    color: #ffffff;
+   font-size: 24px;
+   color: #ffffff ;
 }
-
-.location-number:hover {
-    font-size: 30px;
-    transition: 0.2;
-}
-
-
 
 .degree-number {
-    color: #B9D9B4;
-    font-size: 26px;
-    font-family: Raleway;
-}
-
-.degree-number:hover {
-    color: #D18E8F;
-    font-size: 30px;
+   color: #B9D9B4 ;
+   font-size: 26px;
+   font-family: Raleway;
 }
 
 .degree {
-    background-color: #288D85;
-    display: block;
-    margin: auto;
+   background-color: #288D85 ;
+   display: block;
+   margin: auto;
 }
 
 .degreetext {
-    color: white;
-    font-size: 20px;
-    font-family: Raleway;
-    text-align: center;
-}
-
-.degreetext:hover {
-    font-size: 24px;
+   color: white;
+   font-size: 20px;
+   font-family: Raleway;
+   text-align: center;
 }
 
 .logout {
-    background-color: #288D85;
-    text-align: center;
-    padding-bottom: 20px;
+   background-color: #288D85 ;
+   text-align: center;
+   padding-bottom: 20px;
 }
 
 .logoutbtn {
-    padding: 5px;
-    background-color: #B9D9B4;
-    border: solid 1px #B9D9B4;
-    border-radius: 3px;
-    font-family: Raleway;
-    font-size: 18px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    opacity: 0.7;
+   padding: 5px;
+   background-color: #B9D9B4 ;
+   border: solid 1px #B9D9B4 ;
+   border-radius: 3px;
+   font-family: Raleway;
+   font-size: 18px;
+   padding-top: 3px;
+   padding-bottom: 3px;
+   opacity: 0.7;
 }
 
 a {
-    color: #288D85;
+   color: #288D85 ;
 }
 
 /*STYLING FOR FRIEND FEED*/
 .feedcol {
-    background-color: #f8f8f8;
-    height: 830px;
-    background-size: cover;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-position: center center;
+   background-color: #f8f8f8 ;
+   height: 830px;
+   background-size: cover;
+   background-attachment: fixed;
+   background-repeat: no-repeat;
+   background-position: center center;
 }
 
 .friendblurb {
-    border: solid #F0A991 1px;
-    height: 110px;
-    border-radius: 3px;
-    margin-top: 30px;
-    margin-bottom: 30px;
-    background-color: #F0A991;
+   border: solid #F0A991  1px;
+   height: 110px;
+   border-radius: 3px;
+   margin-top: 30px;
+   margin-bottom: 30px;
+   background-color: #F0A991 ;
 }
 
 .feedscroll {
-    height: 580px;
-    overflow: scroll;
+   height: 580px;
+   overflow: scroll;
 }
 
 .miniprofilepic {
-    height: 80px;
-    width: 80px;
-    border-radius: 100%;
-    margin-top: 13px;
+   height: 80px;
+   width: 80px;
+   border-radius: 100%;
+   margin-top: 13px;
 }
 
 .name {
-    color: #2A363B;
-    font-size: 20px;
+   color: #2A363B ;
+   font-size: 20px;
 }
 
 .currentlocation {
-    color: #2A363B;
-    font-size: 16px;
+   color: #2A363B ;
+   font-size: 16px;
 }
 
 .name, .currentlocation{
-    line-height: 1;
+   line-height: 1;
 }
 
 .glyph {
-    color: #2A363B;
-    font-size: 34px;
-    padding-top: 40px;
+   color: #2A363B ;
+   font-size: 34px;
+   padding-top: 40px;
 }
 
 .degreemutual {
-    background-color: #f6ccbe;
+   background-color: #f6ccbe ;
 }
-
