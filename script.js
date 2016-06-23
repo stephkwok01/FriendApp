@@ -49,6 +49,7 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 			user.name = fbUser.displayName;
 			user.photo = fbUser.photoURL;
 			user.token = access;
+			user.location = $scope.cityLocation;
 			user.$save();
 			//end of Gabe code
 		});
@@ -73,10 +74,27 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 			// end of added code
 				//choosing city from user
 				$scope.cities = ["Cape Town", "Melbourne", "Park City"];
+				$scope.cityLocation = user.Location;
 				$scope.addLocation = function(){
 					// console.log($scope.cityLocation);
 					uref.child('Location').set($scope.cityLocation);
+					// $scope.currentCity = $scope.cityLocation;
 				}
+
+				// $scope.checkLocation = function(friend){
+				// 	// console.log(user);
+				// 	// console.log(user.Location);
+				// 	if(angular.equals(user.Location, friend.Location)){
+				// 		console.log(friend.Location);
+				// 		console.log("here");
+				// 		$scope.test = true;
+				// 	}
+				// 	else {
+				// 		$scope.test = false;
+				// 	}
+				// }
+
+
 				var token = user.token;
 				FB.api('/me', 'get', {access_token: token}, function(result){
 
@@ -94,6 +112,7 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 						// console.log(snapshot.exportVal());
 
 						var doubleFriend = false;
+						var sameLoc = false;
 				
 						$scope.firebaseFriends = snapshot.exportVal();
 						$scope.facebookFriends = snapshot.exportVal();
@@ -117,11 +136,11 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 							}
 							else {
 								delete $scope.facebookFriends[index];
-								console.log($scope.facebookFriends);
 							}
 						});
 					});
-    		});
+
+    			});
 			});
 		}
 		else {
@@ -129,12 +148,28 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 		}
 	});
 
+	// $scope.checkLocation = function(){
+	// 	console.log(user);
+	// 	console.log(user.Location);
+	// 	// if(angular.equals()){
+
+	// 	// }
+	// }
+
 	//sign out button 
 	$scope.logout = function() {
 		auth.$signOut();
 		$location.path("/");
 	}
-}); //end of homeCtrl 
+});
+ //end of homeCtrl 
+
+//  app.filter('custom', function() {
+// 	result = user;
+// 	console.log(user);
+// 	return result;
+											
+// });
 
 
 
