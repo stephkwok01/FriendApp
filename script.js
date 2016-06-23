@@ -60,9 +60,9 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 	//making arrays of objects in firebasef
 	var friendRef = firebase.database().ref().child("Friends");
 
-	friendRef.on("value", function(snapshot) {
-  		console.log(snapshot.val());
-	});
+	
+
+	
 
 	//checking if user is signed in or not
 	var auth = $firebaseAuth();
@@ -71,34 +71,64 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 			$scope.firebaseUser = firebaseUser;
 			// added code from Gabe --> getting the accses token from the database so that
 			// you don't have to relogin in everytime you want use the site
-			var ref = firebase.database().ref().child("Friends").child(firebaseUser.uid);
-			var user = $firebaseObject(ref);
+			var uref = firebase.database().ref().child("Friends").child(firebaseUser.uid);
+			var user = $firebaseObject(uref);
 			user.$loaded().then(function() {
 			// end of added code
 				//choosing city from user
-	     	$scope.cities = ["Cape Town", "Melbourne", "Park City"];
+				$scope.cities = ["Cape Town", "Melbourne", "Park City"];
 				$scope.addLocation = function(){
-					console.log($scope.cityLocation);
-					ref.child('Location').set($scope.cityLocation);
+					// console.log($scope.cityLocation);
+					uref.child('Location').set($scope.cityLocation);
 				}
 				var token = user.token;
 				FB.api('/me', 'get', {access_token: token}, function(result){
 
 				})
 				FB.api('/me/friends', 'get', {access_token: token},  function(response) {
-	            	console.log(response);
-	            	$scope.friendID1 = response.data[0].id;
-	            	$scope.friendName1 = response.data[0].name;
-	            	$scope.friendID2 = response.data[1].id;
-	            	$scope.friendName2 = response.data[1].name;
-	            	$scope.friendID3 = response.data[2].id;
-	            	$scope.friendName3 = response.data[2].name;
-	            	var fref = firebase.database().ref().child("Friends").child($scope.friendID1);
+					console.log(response);
+					$scope.friendID = response.data[0].id;
+					var fref = firebase.database().ref().child("Friends").child($scope.friendID);
 					var friend1 = $firebaseObject(fref); 
-					var ftoken = friend1.token;      	
-	            	$scope.myFriends = response.data;
-	            });
-	       
+
+					$scope.myFriends1 = response.data;
+
+					friendRef.on("value", function(snapshot) {
+						console.log(snapshot.exportVal());
+						$scope.myFriends2 = snapshot.exportVal();
+						angular.forEach($scope.myFriends2, function(firefriend, index){
+							// console.log(firefriend.name);
+							angular.forEach($scope.myFriends1, function(facefriend, index){
+								console.log(facefriend.name);
+								// if(angular.equals(firefriend, facefriend)){
+								// 	console.log("it works");
+								// }
+
+								
+							});
+						});
+					});
+
+		//angular.forEach(Venues.list, function(genre, index){
+        //Only add to the availableGenres array if it doesn't already exist
+        //     var exists = false;
+        //     angular.forEach($scope.availableGenres, function(avGenre, index){
+        //         if (avGenre == genre) {
+        //             exists = true;
+        //         }
+        //     });
+        //     if (exists === false) {
+        //         $scope.availableGenres.push(genre);
+        //     }
+        // });
+
+
+
+					
+
+
+				});
+
 			});
 		}
 		else {
