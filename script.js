@@ -89,12 +89,6 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 					var friend1 = $firebaseObject(fref); 
 					var ftoken = friend1.token;      	
 	            	$scope.myFriends = response.data;
-
-	            	FB.api('/friendID1/friends', 'get', {access_token: ftoken},  function(response) {
-	            	console.log(response);
-	             //  $scope.myFriends = response.data;
-	            });
-	             //  $scope.myFriends = response.data;
 	            });
 	       
 			});
