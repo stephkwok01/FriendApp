@@ -58,7 +58,8 @@ body,  {
 
 .statspanel {
    background-color: #288D85 ;
-   max-height: 830px;
+   height: 830px;
+   text-align: center;
 }
 
 @media (max-width: 768px){
@@ -84,7 +85,7 @@ body,  {
 
 .logo {
    font-family: Grand Hotel;
-   text-align: center;
+   /*text-align: center;*/
    color: white;
    font-size: 40px;
    padding-top: 15px;
@@ -101,10 +102,34 @@ body,  {
 }
 
 .username {
-   text-align: center;
+   /*text-align: center;*/
    color: #D18E8F ;
    font-size: 30px;
    font-family: Grand Hotel;
+}
+
+.filters {
+    color: #ffffff;
+    font-size: 24px;
+    font-family: Raleway;
+    /*text-align: center;*/
+    line-height: 70px;
+    transition: all .2s ease-in-out;
+}
+
+.filters:hover {
+    transform: scale(1.1); 
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+}
+
+.current-location {
+    /*text-align: center;*/
+    font-family: Raleway;
+    color: #B9D9B4;
 }
 
 .space {
@@ -125,7 +150,7 @@ body,  {
    color: #B9D9B4 ;
    font-size: 20px;
    font-family: Raleway;
-   text-align: center;
+   /*text-align: center;*/
 }
 
 .location-number {
@@ -149,12 +174,12 @@ body,  {
    color: white;
    font-size: 20px;
    font-family: Raleway;
-   text-align: center;
+   /*text-align: center;*/
 }
 
 .logout {
    background-color: #288D85 ;
-   text-align: center;
+   /*text-align: center;*/
    padding-bottom: 20px;
 }
 

@@ -2,7 +2,7 @@
 <div class="row" >
 
 	 <div class="col-md-3 statspanel">
-			<h4 class="logo"> FriendsApp </h4>
+			<h4 class="logo"> 2&degConnection </h4>
 			<img class="profile-pic" src="{{firebaseUser.photoURL}}"/>
 			<br>
 
@@ -12,6 +12,7 @@
 				</div>
 			</div>
 
+<<<<<<< HEAD
 			<!-- entering userlocation -->
 			<div class="row">
 				<div class="col-md-12">
@@ -20,8 +21,34 @@
 				<button ng-click = "addLocation()"> enter </button>
 			</div>
 			
+=======
+			<div class="row">
+				<div class="col-md-12">
+					<p class="current-location"> Cape Town </p>
+				</div>
+			</div>
+	<!-- code for list test --> 	
+			<div class="row">
+				<div class="col-md-12">
+					<ul>
+						<li class="filters"> city </li>
+						<li class="filters"> region </li>
+						<li class="filters"> country</li>
+					</ul>
+					<br>
+					<ul>
+						<li class="filters"> friends</li>
+						<li class="filters"> 2&deg connection</li>
+					</ul>
+					<br>
+					<button class="logoutbtn"><a ng-click="logout()">logout</a> </button> 
+				</div>
+			</div>
+
+	</div>		
+>>>>>>> a7ac41bea36c21bbab20171694482033f82a5917
 <!-- LOCATION -->
-			<div class="row sidebar">
+			<!-- <div class="row sidebar">
 				<div class="col-md-12 space">
 				</div>
 			</div>
@@ -40,9 +67,9 @@
 				<div class="col-md-12 location">
 					<p class="locationtext"> country <span class="location-number">45</span></p>
 				</div>
-			</div>
+			</div> -->
 <!-- DEGREE OF SEPARATION -->
-			<div class="row sidebar">
+			<!-- <div class="row sidebar">
 				<div class="col-md-12 space">
 				</div>
 			</div>
@@ -55,25 +82,25 @@
 				<div class="col-md-12 degree second">
 					<p class="degreetext"> mutual friends <span class="degree-number">35</span></p>
 				</div>
-			</div>
+			</div> -->
 
 <!-- LOGOUT BUTTON -->	
-			<div class="row sidebar">
+			<!-- <div class="row sidebar">
 				<div class="col-md-12 logoutspace">
 				</div>
-			</div>		
-			<div class="row">
+			</div>	 -->	
+		<!-- 	<div class="row">
 				<div class="col-md-12 logout">
 					<button class="logoutbtn"><a ng-click="logout()">logout</a> </button> 
 				</div>
 			</div>
 			
-		</div>		
+		</div> -->		
 			 
 			
 		<div class="col-md-9 feedcol">
 			<div class="row mapimage">
-				<div class="col-md-12 map"><p class="meetup"> Meet up with your friends (and their friends)...
+				<div class="col-md-12 map"><p class="meetup"> Meet up with your friends (&amp their friends)...
 				<br> wherever you are in the world! </div>
 			</div>
 
@@ -81,9 +108,9 @@
 				<div class="col-xs-8 col-xs-offset-2 ">
 					
 					<div class="row friendblurb">
-						<div class="col-xs-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-xs-2"><img class="miniprofilepic" ng-src="http://graph.facebook.com/{{friendID1}}/picture"/></div>
 						<div class="col-xs-10">
-							<h3 class="name"> Stella Pickard </h3>
+							<h3 class="name">{{friendName1}}</h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> Facebook Friends </p>
 						</div>
@@ -91,9 +118,9 @@
 					</div>
 <!-- THESE DIVS BELOW WILL DISAPPEAR AND BE ADDED ON BY THE AGULAR SCRIPT -->
 					<div class="row friendblurb">
-						<div class="col-xs-2"><img class="img-responsive miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-xs-2"><img class="img-responsive miniprofilepic" ng-src="http://graph.facebook.com/{{friendID2}}/picture"/></div>
 						<div class="col-xs-10">
-							<h3 class="name"> Steph Kwok </h3>
+							<h3 class="name"> {{friendName2}} </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> Facebook Friends </p>
 						</div>
@@ -101,9 +128,9 @@
 					</div>
 
 					<div class="row friendblurb degreemutual">
-						<div class="col-xs-2"><img class="img-responsive miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-xs-2"><img class="img-responsive miniprofilepic" ng-src="http://graph.facebook.com/{{friendID3}}/picture"/></div>
 						<div class="col-xs-10">
-							<h3 class="name"> Mickey Mouse </h3>
+							<h3 class="name"> {{friendName3}} </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> You have mutual Facebook Friends </p>
 						</div>
