@@ -14,9 +14,10 @@
 			<!-- entering userlocation -->
 			<div class="row">
 				<div class="col-md-12">
-					<select ng-model="cityLocation" class="form-control" ng-options="city for city in cities"></select>
+					<select class="locationbar" ng-model="cityLocation" class="form-control" ng-options="city for city in cities"></select>
 				</div>
-				<button ng-click = "addLocation()"> enter </button>
+				<br> <br>  
+				<button class="enterbutton" ng-click = "addLocation()"> enter </button>
 			</div>
 	<!-- code for list test --> 	
 			<div class="row">
@@ -35,7 +36,6 @@
 					<button class="logoutbtn"><a ng-click="logout()">logout</a> </button> 
 				</div>
 			</div>
-
 	</div>		
 <!-- LOCATION -->
 			<!-- <div class="row sidebar">
