@@ -60,10 +60,6 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 	//making arrays of objects in firebasef
 	var friendRef = firebase.database().ref().child("Friends");
 
-	
-
-	
-
 	//checking if user is signed in or not
 	var auth = $firebaseAuth();
 	auth.$onAuthStateChanged(function(firebaseUser) {
@@ -98,8 +94,7 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 						// console.log(snapshot.exportVal());
 
 						var doubleFriend = false;
-						
-
+				
 						$scope.firebaseFriends = snapshot.exportVal();
 						$scope.facebookFriends = snapshot.exportVal();
 						angular.forEach($scope.firebaseFriends, function(firefriend, index){
@@ -124,32 +119,9 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 								delete $scope.facebookFriends[index];
 								console.log($scope.facebookFriends);
 							}
-
 						});
-						
 					});
-					// console.log($scope.facebookFriends);
-
-		//angular.forEach(Venues.list, function(genre, index){
-        //Only add to the availableGenres array if it doesn't already exist
-        //     var exists = false;
-        //     angular.forEach($scope.availableGenres, function(avGenre, index){
-        //         if (avGenre == genre) {
-        //             exists = true;
-        //         }
-        //     });
-        //     if (exists === false) {
-        //         $scope.availableGenres.push(genre);
-        //     }
-        // });
-
-
-
-
-
-
-    });
-
+    		});
 			});
 		}
 		else {
