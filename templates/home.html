@@ -97,19 +97,19 @@
 			<div class="row feedscroll">
 				<div class="col-xs-8 col-xs-offset-2 ">
 					
-					<div class="row friendblurb" ng-repeat="friend in myFriends1">
+					<div class="row friendblurb" ng-repeat="friend in facebookFriends">
 						<div class="col-xs-2"><img class="miniprofilepic" ng-src="{{friend.photo}}"/></div>
 						<div class="col-xs-10">
-							<h3 class="name" ng-model="friend1">{{friend.name}}</h3>
+							<h3 class="name"">{{friend.name}}</h3>
 							<p class="currentlocation"> {{friend.Location}}</p>
 							<p class="currentlocation"> Facebook Friends </p>
 						</div>
 					</div>
-					<div class="row friendblurb" ng-repeat="friend2 in myFriends2" ng-if="friend2.name !== friend1">
-						<div class="col-xs-2"><img class="miniprofilepic" ng-src="{{friend2.photo}}"/></div>
+					<div class="row friendblurb" ng-repeat="friend in firebaseFriends">
+						<div class="col-xs-2"><img class="miniprofilepic" ng-src="{{friend.photo}}"/></div>
 						<div class="col-xs-10">
-							<h3 class="name">{{friend2.name}}</h3>
-							<p class="currentlocation"> {{friend2.Location}}</p>
+							<h3 class="name">{{friend.name}}</h3>
+							<p class="currentlocation"> {{friend.Location}}</p>
 							<p class="currentlocation"> 2&degConnection </p>
 						</div>
 					</div>
