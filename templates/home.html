@@ -14,10 +14,9 @@
 			<!-- entering userlocation -->
 			<div class="row">
 				<div class="col-md-12">
-					<select class="locationbar" ng-model="cityLocation" class="form-control" ng-options="city for city in cities"></select>
+					<select class="locationbar" ng-model="cityLocation" class="form-control" ng-options="city for city in cities" ng-selected="addLocation()"></select>
 				</div>
 				<br> <br>  
-				<button class="enterbutton" ng-click = "addLocation()"> enter </button>
 			</div>
 	<!-- code for list test --> 	
 			<div class="row">
@@ -99,7 +98,8 @@
 			<div class="row feedscroll">
 				<div class="col-xs-8 col-xs-offset-2 ">
 
-					<div class="row friendblurb" ng-repeat="friend in facebookFriends">
+					
+					<div class="row friendblurb" ng-repeat="friend in facebookFriends" ng-hide="cityLocation !== friend.Location">
 						<div class="col-xs-2"><img class="miniprofilepic" ng-src="{{friend.photo}}"/></div>
 						<div class="col-xs-10 blurbtext">
 							<h3 class="name"">{{friend.name}}</h3>
@@ -107,7 +107,7 @@
 							<p class="currentlocation"> Facebook Friends </p>
 						</div>
 					</div>
-					<div class="row friendblurb degreemutual" ng-repeat="friend in firebaseFriends">
+					<div class="row friendblurb degreemutual" ng-repeat="friend in firebaseFriends" ng-hide="cityLocation !== friend.Location">
 						<div class="col-xs-2"><img class="miniprofilepic" ng-src="{{friend.photo}}"/></div>
 						<div class="col-xs-10 blurbtext">
 							<h3 class="name">{{friend.name}}</h3>

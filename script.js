@@ -15,10 +15,11 @@ var access = '';
 //login page controller
 app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObject,$http,$window){
 
-
+	$scope.cityLocation = "Lost";
 	// adding background images
 	var images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg',
-	'13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg' ];
+	'13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg',
+	'25.jpg', '26.jpg', '27.jpg', '28.jpg', '29.jpg', '30.jpg', '31.jpg', '32.jpg', '33.jpg', '34.jpg', '35.jpg', ];
 	var randomNumber = Math.floor(Math.random() * images.length);
 	$scope.backgroundImage = {
 		'background-image' :'url(./Images/'+ randomNumber + '.jpg)',
@@ -49,6 +50,7 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 			user.name = fbUser.displayName;
 			user.photo = fbUser.photoURL;
 			user.token = access;
+			user.location = $scope.cityLocation;
 			user.$save();
 			//end of Gabe code
 		});
@@ -59,10 +61,6 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $firebaseArray, $firebaseObject, $filter){
 	//making arrays of objects in firebasef
 	var friendRef = firebase.database().ref().child("Friends");
-
-	
-
-	
 
 	//checking if user is signed in or not
 	var auth = $firebaseAuth();
@@ -77,10 +75,13 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 			// end of added code
 				//choosing city from user
 				$scope.cities = ["Cape Town", "Melbourne", "Park City"];
+				$scope.cityLocation = user.Location;
 				$scope.addLocation = function(){
-					// console.log($scope.cityLocation);
 					uref.child('Location').set($scope.cityLocation);
 				}
+
+
+
 				var token = user.token;
 				FB.api('/me', 'get', {access_token: token}, function(result){
 
@@ -98,8 +99,7 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 						// console.log(snapshot.exportVal());
 
 						var doubleFriend = false;
-						
-
+				
 						$scope.firebaseFriends = snapshot.exportVal();
 						$scope.facebookFriends = snapshot.exportVal();
 						angular.forEach($scope.firebaseFriends, function(firefriend, index){
@@ -122,34 +122,11 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 							}
 							else {
 								delete $scope.facebookFriends[index];
-								console.log($scope.facebookFriends);
 							}
-
 						});
-						
 					});
-					// console.log($scope.facebookFriends);
 
-		//angular.forEach(Venues.list, function(genre, index){
-        //Only add to the availableGenres array if it doesn't already exist
-        //     var exists = false;
-        //     angular.forEach($scope.availableGenres, function(avGenre, index){
-        //         if (avGenre == genre) {
-        //             exists = true;
-        //         }
-        //     });
-        //     if (exists === false) {
-        //         $scope.availableGenres.push(genre);
-        //     }
-        // });
-
-
-
-
-
-
-    });
-
+    			});
 			});
 		}
 		else {
@@ -157,12 +134,21 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 		}
 	});
 
+
 	//sign out button 
 	$scope.logout = function() {
 		auth.$signOut();
 		$location.path("/");
 	}
-}); //end of homeCtrl 
+});
+ //end of homeCtrl 
+
+//  app.filter('custom', function() {
+// 	result = user;
+// 	console.log(user);
+// 	return result;
+											
+// });
 
 
 
