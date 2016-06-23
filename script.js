@@ -74,7 +74,7 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 			user.$loaded().then(function() {
 			// end of added code
 				//choosing city from user
-				$scope.cities = ["Cape Town", "Melbourne", "Park City"];
+				$scope.cities = ["Lost","Cape Town", "Melbourne", "Park City", "Shanghai", "Hong Kong", "New York"];
 				$scope.cityLocation = user.Location;
 				$scope.addLocation = function(){
 					uref.child('Location').set($scope.cityLocation);
