@@ -50,7 +50,7 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 			user.name = fbUser.displayName;
 			user.photo = fbUser.photoURL;
 			user.token = access;
-			user.location = $scope.cityLocation;
+			user.Location = $scope.cityLocation;
 			user.$save();
 			//end of Gabe code
 		});
