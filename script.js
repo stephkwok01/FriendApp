@@ -35,7 +35,8 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 	//Sign into facebook
 	$scope.FBlogin = function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
-		provider.addScope('user_friends');
+
+		provider.addScope('user_friends, user_location');
 
 		auth.$signInWithPopup(provider).then(function(result) {
 			console.log(result);
@@ -60,7 +61,6 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $firebaseArray, $firebaseObject){
 	//making arrays of objects in firebasef
 	var friendRef = firebase.database().ref().child("Friends");
-
 	//checking if user is signed in or not
 	var auth = $firebaseAuth();
 	auth.$onAuthStateChanged(function(firebaseUser) {
@@ -72,14 +72,31 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 			var user = $firebaseObject(ref);
 			user.$loaded().then(function() {
 			// end of added code
-				console.log("user",user);
+				// console.log("user",user);
 				var token = user.token;
 				FB.api('/me', 'get', {access_token: token}, function(result){
-					console.log(result);
+					// console.log(result);
 				})
-				FB.api('/me/friends', 'get', {access_token: token}, function(response) {
-	        console.log(response);
-	      });
+				FB.api('/me/friends', 'get', {access_token: token},  function(response) {
+	            	console.log(response);
+	            	$scope.friendID1 = response.data[0].id;
+	            	$scope.friendName1 = response.data[0].name;
+	            	$scope.friendID2 = response.data[1].id;
+	            	$scope.friendName2 = response.data[1].name;
+	            	$scope.friendID3 = response.data[2].id;
+	            	$scope.friendName3 = response.data[2].name;
+	            	var fref = firebase.database().ref().child("Friends").child($scope.friendID1);
+					var friend1 = $firebaseObject(fref); 
+					var ftoken = friend1.token;      	
+	            	$scope.myFriends = response.data;
+
+	            	FB.api('/friendID1/friends', 'get', {access_token: ftoken},  function(response) {
+	            	console.log(response);
+	             //  $scope.myFriends = response.data;
+	            });
+	             //  $scope.myFriends = response.data;
+	            });
+	       
 			});
 		}
 		else {
