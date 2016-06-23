@@ -1,4 +1,5 @@
-<div class="row" ng-controller="homeCtrl">
+<div class="container-fluid" ng-controller="homeCtrl">
+<div class="row" >
 
 	 <div class="col-md-3 statspanel">
 			<h4 class="logo"> FriendsApp </h4>
@@ -12,44 +13,44 @@
 			</div>
 			
 <!-- LOCATION -->
-			<div class="row">
+			<div class="row sidebar">
 				<div class="col-md-12 space">
 				</div>
 			</div>
-			<div class="row">
+			<div class="row sidebar">
 				<div class="col-md-12 location">
 				<p class="locationtext"> city <span class="location-number">17</span> </p>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row sidebar">
 				<div class="col-md-12 location">
 				<p class="locationtext"> region <span class="location-number">34</span></p>
 				</div>
 			</div>
 
-			<div class="row">
+			<div class="row sidebar">
 				<div class="col-md-12 location">
 					<p class="locationtext"> country <span class="location-number">45</span></p>
 				</div>
 			</div>
 <!-- DEGREE OF SEPARATION -->
-			<div class="row">
+			<div class="row sidebar">
 				<div class="col-md-12 space">
 				</div>
 			</div>
-			<div class="row">
+			<div class="row sidebar">
 				<div class="col-md-12 degree first">
 					<p class="degreetext"> friends <span class="degree-number">16</span></p>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row sidebar">
 				<div class="col-md-12 degree second">
 					<p class="degreetext"> mutual friends <span class="degree-number">35</span></p>
 				</div>
 			</div>
 
 <!-- LOGOUT BUTTON -->	
-			<div class="row">
+			<div class="row sidebar">
 				<div class="col-md-12 logoutspace">
 				</div>
 			</div>		
@@ -63,83 +64,93 @@
 			 
 			
 		<div class="col-md-9 feedcol">
-			<div class="row">
-				<div class="col-md-12 map"></div>
+			<div class="row mapimage">
+				<div class="col-md-12 map"><p class="meetup"> Meet up with your friends (and their friends)...
+				<br> wherever you are in the world! </div>
 			</div>
 
 			<div class="row feedscroll">
-				<div class="col-md-8 col-md-offset-2 ">
+				<div class="col-xs-8 col-xs-offset-2 ">
 					
 					<div class="row friendblurb">
-						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
-						<div class="col-md-9">
+						<div class="col-xs-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-xs-10">
 							<h3 class="name"> Stella Pickard </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> Facebook Friends </p>
 						</div>
-						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+					<!-- 	<div class="col-xs-1"><span class="glyphicon glyphicon-comment glyph"></span></div> -->
 					</div>
 <!-- THESE DIVS BELOW WILL DISAPPEAR AND BE ADDED ON BY THE AGULAR SCRIPT -->
 					<div class="row friendblurb">
-						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
-						<div class="col-md-9">
+						<div class="col-xs-2"><img class="img-responsive miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-xs-10">
 							<h3 class="name"> Steph Kwok </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> Facebook Friends </p>
 						</div>
-						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+						<!-- <div class="col-xs-1"><span class="glyphicon glyphicon-comment glyph"></span></div> -->
 					</div>
 
 					<div class="row friendblurb degreemutual">
-						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
-						<div class="col-md-9">
+						<div class="col-xs-2"><img class="img-responsive miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-xs-10">
 							<h3 class="name"> Mickey Mouse </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> You have mutual Facebook Friends </p>
 						</div>
-						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+						<!-- <div class="col-xs-1"><span class="glyphicon glyphicon-comment glyph"></span></div> -->
 					</div>
 
 					<div class="row friendblurb degreemutual">
-						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
-						<div class="col-md-9">
+						<div class="col-xs-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-xs-10">
 							<h3 class="name"> Boozy Suzy </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> You have mutual Facebook Friends </p>
 						</div>
-						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+						<!-- <div class="col-xs-1"><span class="glyphicon glyphicon-comment glyph"></span></div> -->
 					</div>
 
 					<div class="row friendblurb">
-						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
-						<div class="col-md-9">
+						<div class="col-xs-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-xs-10">
 							<h3 class="name"> E.J Elliot </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> You have mutual Facebook Friends </p>
 						</div>
-						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+						<!-- <div class="col-xs-1"><span class="glyphicon glyphicon-comment glyph"></span></div> -->
 					</div>
 
 					<div class="row friendblurb degreemutual">
-						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
-						<div class="col-md-9">
+						<div class="col-xs-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-xs-10">
 							<h3 class="name"> Jan Pickard </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> You have mutual Facebook Friends </p>
 						</div>
-						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+						<!-- <div class="col-xs-1"><span class="glyphicon glyphicon-comment glyph"></span></div> -->
 					</div>	
 		
 					<div class="row friendblurb degreeconnection">
-						<div class="col-md-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
-						<div class="col-md-9">
+						<div class="col-xs-2"><img class="miniprofilepic" src="./images/profilepic.jpg"/></div>
+						<div class="col-xs-10">
 							<h3 class="name"> Jan Pickard </h3>
 							<p class="currentlocation"> Cape Town </p>
 							<p class="currentlocation"> You have a 3rd degree Facebook connection </p>
 						</div>
-						<div class="col-md-1"><span class="glyphicon glyphicon-comment glyph"></span></div>
+						<!-- <div class="col-xs-1"><span class="glyphicon glyphicon-comment glyph"></span></div> -->
 					</div>
+					
+					<!-- LOGOUT ONLY SHOWN ON MOBILE -->
+					<!-- <div class="row mobile-logout">
+						<div class="col-md-12 logout">
+							<button class="logoutbtn"><a ng-click="logout()">logout</a> </button> 
+						</div>
+					</div> -->
+
 				</div>
 			</div>	
 		</div>
+</div>
 </div>
