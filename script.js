@@ -15,10 +15,11 @@ var access = '';
 //login page controller
 app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObject,$http,$window){
 
-
+	$scope.cityLocation = "Lost";
 	// adding background images
 	var images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg',
-	'13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg' ];
+	'13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg',
+	'25.jpg', '26.jpg', '27.jpg', '28.jpg', '29.jpg', '30.jpg', '31.jpg', '32.jpg', '33.jpg', '34.jpg', '35.jpg', ];
 	var randomNumber = Math.floor(Math.random() * images.length);
 	$scope.backgroundImage = {
 		'background-image' :'url(./Images/'+ randomNumber + '.jpg)',
@@ -76,23 +77,9 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 				$scope.cities = ["Cape Town", "Melbourne", "Park City"];
 				$scope.cityLocation = user.Location;
 				$scope.addLocation = function(){
-					// console.log($scope.cityLocation);
 					uref.child('Location').set($scope.cityLocation);
-					// $scope.currentCity = $scope.cityLocation;
 				}
 
-				// $scope.checkLocation = function(friend){
-				// 	// console.log(user);
-				// 	// console.log(user.Location);
-				// 	if(angular.equals(user.Location, friend.Location)){
-				// 		console.log(friend.Location);
-				// 		console.log("here");
-				// 		$scope.test = true;
-				// 	}
-				// 	else {
-				// 		$scope.test = false;
-				// 	}
-				// }
 
 
 				var token = user.token;
@@ -112,7 +99,6 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 						// console.log(snapshot.exportVal());
 
 						var doubleFriend = false;
-						var sameLoc = false;
 				
 						$scope.firebaseFriends = snapshot.exportVal();
 						$scope.facebookFriends = snapshot.exportVal();
@@ -148,13 +134,6 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 		}
 	});
 
-	// $scope.checkLocation = function(){
-	// 	console.log(user);
-	// 	console.log(user.Location);
-	// 	// if(angular.equals()){
-
-	// 	// }
-	// }
 
 	//sign out button 
 	$scope.logout = function() {
