@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Grand+Hotel);
 @import url(https://fonts.googleapis.com/css?family=Raleway);
+@import url(https://fonts.googleapis.com/css?family=Amatic+SC);
 
 
 html,
@@ -62,6 +63,12 @@ body,  {
    text-align: center;
 }
 
+@media (max-width: 768px){
+  .statspanel {
+    height: 370px;
+  }
+}
+
 .locationbar {
   max-width: 250px;
   font-family: Raleway;
@@ -104,7 +111,6 @@ body,  {
 
 .logo {
    font-family: Grand Hotel;
-   /*text-align: center;*/
    color: white;
    font-size: 40px;
    padding-top: 15px;
@@ -121,7 +127,6 @@ body,  {
 }
 
 .username {
-   /*text-align: center;*/
    color: #D18E8F ;
    font-size: 30px;
    font-family: Grand Hotel;
@@ -131,7 +136,6 @@ body,  {
     color: #ffffff;
     font-size: 24px;
     font-family: Raleway;
-    /*text-align: center;*/
     line-height: 70px;
     transition: all .2s ease-in-out;
 }
@@ -146,7 +150,6 @@ ul {
 }
 
 .current-location {
-    /*text-align: center;*/
     font-family: Raleway;
     color: #B9D9B4;
 }
@@ -169,12 +172,12 @@ ul {
    color: #B9D9B4 ;
    font-size: 20px;
    font-family: Raleway;
-   /*text-align: center;*/
 }
 
-.location-number {
-   font-size: 24px;
-   color: #ffffff ;
+.location-num {
+   font-size: 36px;
+   color: #B9D9B4;
+   font-family: Grand Hotel;
 }
 
 .degree-number {
@@ -193,13 +196,13 @@ ul {
    color: white;
    font-size: 20px;
    font-family: Raleway;
-   /*text-align: center;*/
 }
 
 .logout {
    background-color: #288D85 ;
-   /*text-align: center;*/
    padding-bottom: 20px;
+   min-height: 140px;
+   text-align: center;
 }
 
 .logoutbtn {
@@ -214,8 +217,27 @@ ul {
    opacity: 0.4;
 }
 
-.logoutbtn:hover {
+.m-logoutbtn {
+   padding: 5px;
+   background-color: #B9D9B4 ;
+   border: solid 1px #B9D9B4 ;
+   border-radius: 3px;
+   font-family: Raleway;
+   font-size: 18px;
+   padding-top: 3px;
+   padding-bottom: 3px;
+   opacity: 0.4;
+}
+
+
+.logoutbtn:hover, .m-logoutbtn {
     opacity: 0.7;
+}
+
+@media (max-width: 768px){
+  .logoutbtn {
+    display:none;
+  }
 }
 
 a {
@@ -225,12 +247,6 @@ a {
 a:hover {
     opacity: 0.7;
     text-decoration: none;
-}
-
-@media (max-width: 768px){
-    .logout, .logoutbtn {
-        display: none;
-    }
 }
 
 @media (max-width:768px){
@@ -266,6 +282,10 @@ a:hover {
     }
 }
 
+.blurbtext {
+  padding-left: 70px;
+}
+
 .feedscroll {
    max-height: 610px;
    overflow: scroll;
@@ -273,40 +293,27 @@ a:hover {
 }
 
 .miniprofilepic {
-   max-height: 80px;
-   max-width: 80px;
+   height: 80px;
+   width: 80px;
    border-radius: 100%;
    margin-top: 13px;
 }
 
 .name {
    color: #2A363B ;
-   font-size: 20px;
+   font-size: 1.4em;
 }
 
 .currentlocation {
    color: #2A363B ;
-   font-size: 16px;
+   font-size: 1.1em;
 }
 
 .name, .currentlocation{
    line-height: 1;
 }
 
-.glyph {
-   color: #2A363B ;
-   font-size: 34px;
-   padding-top: 40px;
-}
-
 .degreemutual {
    background-color: #f6ccbe ;
 }
 
-/*@media (max-width: 544px){
-
-    .mobile-logout {
-        display: none;
-}*/
-
-}
