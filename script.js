@@ -34,16 +34,17 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 
 	//Sign into facebook
 	$scope.FBlogin = function() {
-		
 		var provider = new firebase.auth.FacebookAuthProvider();
+
 		provider.addScope('user_friends, user_location');
+
 		auth.$signInWithPopup(provider).then(function(result) {
 			console.log(result);
 			var fbUser = result.user;
 			// console.log(result.credential.accessToken);
 			access = result.credential.accessToken;
 			
-			//store this in firebase added by Gabe
+			//store this in firebase -> by Gabe
 			var ref = firebase.database().ref().child('Friends').child(fbUser.uid);
 			var user = $firebaseObject(ref);
 			user.uid = fbUser.uid;
@@ -60,18 +61,10 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $firebaseArray, $firebaseObject){
 	//making arrays of objects in firebasef
 	var friendRef = firebase.database().ref().child("Friends");
-
-	//get accesstoken from firebase
-	// $scope.friendID = {};
-
 	//checking if user is signed in or not
 	var auth = $firebaseAuth();
 	auth.$onAuthStateChanged(function(firebaseUser) {
-
 		if (firebaseUser) {
-			// console.log(auth.$getAuth());
-			
-
 			$scope.firebaseUser = firebaseUser;
 			// added code from Gabe --> getting the accses token from the database so that
 			// you don't have to relogin in everytime you want use the site
@@ -103,8 +96,7 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 	            });
 	             //  $scope.myFriends = response.data;
 	            });
-	            
-
+	       
 			});
 		}
 		else {

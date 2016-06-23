@@ -2,7 +2,7 @@
 <div class="row" >
 
 	 <div class="col-md-3 statspanel">
-			<h4 class="logo"> FriendsApp </h4>
+			<h4 class="logo"> 2&degConnection </h4>
 			<img class="profile-pic" src="{{firebaseUser.photoURL}}"/>
 			<br>
 
@@ -11,9 +11,33 @@
 					<p class="username"> {{firebaseUser.displayName}} </p>
 				</div>
 			</div>
-			
+
+			<div class="row">
+				<div class="col-md-12">
+					<p class="current-location"> Cape Town </p>
+				</div>
+			</div>
+	<!-- code for list test --> 	
+			<div class="row">
+				<div class="col-md-12">
+					<ul>
+						<li class="filters"> city </li>
+						<li class="filters"> region </li>
+						<li class="filters"> country</li>
+					</ul>
+					<br>
+					<ul>
+						<li class="filters"> friends</li>
+						<li class="filters"> 2&deg connection</li>
+					</ul>
+					<br>
+					<button class="logoutbtn"><a ng-click="logout()">logout</a> </button> 
+				</div>
+			</div>
+
+	</div>		
 <!-- LOCATION -->
-			<div class="row sidebar">
+			<!-- <div class="row sidebar">
 				<div class="col-md-12 space">
 				</div>
 			</div>
@@ -32,9 +56,9 @@
 				<div class="col-md-12 location">
 					<p class="locationtext"> country <span class="location-number">45</span></p>
 				</div>
-			</div>
+			</div> -->
 <!-- DEGREE OF SEPARATION -->
-			<div class="row sidebar">
+			<!-- <div class="row sidebar">
 				<div class="col-md-12 space">
 				</div>
 			</div>
@@ -47,25 +71,25 @@
 				<div class="col-md-12 degree second">
 					<p class="degreetext"> mutual friends <span class="degree-number">35</span></p>
 				</div>
-			</div>
+			</div> -->
 
 <!-- LOGOUT BUTTON -->	
-			<div class="row sidebar">
+			<!-- <div class="row sidebar">
 				<div class="col-md-12 logoutspace">
 				</div>
-			</div>		
-			<div class="row">
+			</div>	 -->	
+		<!-- 	<div class="row">
 				<div class="col-md-12 logout">
 					<button class="logoutbtn"><a ng-click="logout()">logout</a> </button> 
 				</div>
 			</div>
 			
-		</div>		
+		</div> -->		
 			 
 			
 		<div class="col-md-9 feedcol">
 			<div class="row mapimage">
-				<div class="col-md-12 map"><p class="meetup"> Meet up with your friends (and their friends)...
+				<div class="col-md-12 map"><p class="meetup"> Meet up with your friends (&amp their friends)...
 				<br> wherever you are in the world! </div>
 			</div>
 
