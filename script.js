@@ -56,7 +56,7 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 }); //end of loginCtrl
 
 //home page controller
-app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $firebaseArray, $firebaseObject){
+app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $firebaseArray, $firebaseObject, $filter){
 	//making arrays of objects in firebasef
 	var friendRef = firebase.database().ref().child("Friends");
 
@@ -94,20 +94,45 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 					$scope.myFriends1 = response.data;
 
 					friendRef.on("value", function(snapshot) {
-						console.log(snapshot.exportVal());
+						// console.log(snapshot.exportVal());
+
+						var doubleFriend = false;
+						$scope.facebookFriends = {};
+
 						$scope.myFriends2 = snapshot.exportVal();
 						angular.forEach($scope.myFriends2, function(firefriend, index){
 							// console.log(firefriend.name);
+							
 							angular.forEach($scope.myFriends1, function(facefriend, index){
 								// console.log(facefriend.name);
-								if(angular.equals(firefriend.name, facefriend.name)){
-									console.log("it works");
-								 }
+									if(angular.equals(firefriend.name, facefriend.name)){
+										// console.log("friends on firebase that are your friends");
+										doubleFriend = true;
+										// $scope.facebookFriends = $scope.myFriends2[index];
 
-								
-							});
+										// console.log(getIndexOf($scope.myFriends1, "facefriend.name"));
+										
+										// delete $scope.myFriends2['facefriend.name'];	
+									}
+								});
+							if(angular.equals(firefriend.name, user.name)){
+								// console.log("this is me, get rid of it");
+								delete $scope.myFriends2[index];
+								// console.log($scope.myFriends2);
+
+							}
+							else if(doubleFriend === true){
+								// console.log("here");
+								$scope.facebookFriends = $scope.myFriends2[index];
+								delete $scope.myFriends2[index];
+								// console.log($scope.facebookFriends);
+
+							}
+
 						});
+						
 					});
+					console.log($scope.facebookFriends);
 
 		//angular.forEach(Venues.list, function(genre, index){
         //Only add to the availableGenres array if it doesn't already exist
@@ -124,10 +149,10 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 
 
 
-					
 
 
-				});
+
+    });
 
 			});
 		}
