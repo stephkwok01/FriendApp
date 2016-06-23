@@ -36,7 +36,7 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 	$scope.FBlogin = function() {
 		var provider = new firebase.auth.FacebookAuthProvider();
 
-		provider.addScope('user_friends, user_location');
+		provider.addScope('user_friends');
 
 		auth.$signInWithPopup(provider).then(function(result) {
 			var fbUser = result.user;
