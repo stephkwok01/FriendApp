@@ -39,9 +39,7 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 		provider.addScope('user_friends, user_location');
 
 		auth.$signInWithPopup(provider).then(function(result) {
-			console.log(result);
 			var fbUser = result.user;
-			// console.log(result.credential.accessToken);
 			access = result.credential.accessToken;
 			
 			//store this in firebase -> by Gabe
@@ -61,12 +59,11 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $firebaseArray, $firebaseObject){
 	//making arrays of objects in firebasef
 	var friendRef = firebase.database().ref().child("Friends");
+
 	friendRef.on("value", function(snapshot) {
   		console.log(snapshot.val());
 	});
 
-
-	// console.log(friendRef);
 	//checking if user is signed in or not
 	var auth = $firebaseAuth();
 	auth.$onAuthStateChanged(function(firebaseUser) {
@@ -78,10 +75,15 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 			var user = $firebaseObject(ref);
 			user.$loaded().then(function() {
 			// end of added code
-				// console.log("user",user);
+				//choosing city from user
+	     	$scope.cities = ["Cape Town", "Melbourne", "Park City"];
+				$scope.addLocation = function(){
+					console.log($scope.cityLocation);
+					ref.child('Location').set($scope.cityLocation);
+				}
 				var token = user.token;
 				FB.api('/me', 'get', {access_token: token}, function(result){
-					// console.log(result);
+
 				})
 				FB.api('/me/friends', 'get', {access_token: token},  function(response) {
 	            	console.log(response);
@@ -111,8 +113,6 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 	}
 }); //end of homeCtrl 
 
-
-				
 
 
 
