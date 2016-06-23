@@ -97,11 +97,11 @@
 			<div class="row feedscroll">
 				<div class="col-xs-8 col-xs-offset-2 ">
 					
-					<div class="row friendblurb" ng-repeat="friend1 in myFriends1">
-						<div class="col-xs-2"><img class="miniprofilepic" ng-src="http://graph.facebook.com/{{friend1.id}}/picture"/></div>
+					<div class="row friendblurb" ng-repeat="friend in myFriends1">
+						<div class="col-xs-2"><img class="miniprofilepic" ng-src="{{friend.photo}}"/></div>
 						<div class="col-xs-10">
-							<h3 class="name" ng-model="friend1">{{friend1.name}}</h3>
-							<p class="currentlocation"> This will change</p>
+							<h3 class="name" ng-model="friend1">{{friend.name}}</h3>
+							<p class="currentlocation"> {{friend.Location}}</p>
 							<p class="currentlocation"> Facebook Friends </p>
 						</div>
 					</div>
