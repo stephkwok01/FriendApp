@@ -99,10 +99,10 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 						angular.forEach($scope.myFriends2, function(firefriend, index){
 							// console.log(firefriend.name);
 							angular.forEach($scope.myFriends1, function(facefriend, index){
-								console.log(facefriend.name);
-								// if(angular.equals(firefriend, facefriend)){
-								// 	console.log("it works");
-								// }
+								// console.log(facefriend.name);
+								if(angular.equals(firefriend.name, facefriend.name)){
+									console.log("it works");
+								 }
 
 								
 							});
