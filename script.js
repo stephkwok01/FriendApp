@@ -91,48 +91,44 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 					var fref = firebase.database().ref().child("Friends").child($scope.friendID);
 					var friend1 = $firebaseObject(fref); 
 
-					$scope.myFriends1 = response.data;
+					$scope.rawFBFriends = response.data;
+					// $scope.facebookFriends = {};
 
 					friendRef.on("value", function(snapshot) {
 						// console.log(snapshot.exportVal());
 
 						var doubleFriend = false;
-						$scope.facebookFriends = {};
+						
 
-						$scope.myFriends2 = snapshot.exportVal();
-						angular.forEach($scope.myFriends2, function(firefriend, index){
+						$scope.firebaseFriends = snapshot.exportVal();
+						$scope.facebookFriends = snapshot.exportVal();
+						angular.forEach($scope.firebaseFriends, function(firefriend, index){
 							// console.log(firefriend.name);
 							
-							angular.forEach($scope.myFriends1, function(facefriend, index){
+							angular.forEach($scope.rawFBFriends, function(facefriend, index){
 								// console.log(facefriend.name);
 									if(angular.equals(firefriend.name, facefriend.name)){
-										// console.log("friends on firebase that are your friends");
-										doubleFriend = true;
-										// $scope.facebookFriends = $scope.myFriends2[index];
-
-										// console.log(getIndexOf($scope.myFriends1, "facefriend.name"));
-										
-										// delete $scope.myFriends2['facefriend.name'];	
+										doubleFriend = true;	
 									}
 								});
 							if(angular.equals(firefriend.name, user.name)){
-								// console.log("this is me, get rid of it");
-								delete $scope.myFriends2[index];
-								// console.log($scope.myFriends2);
+								delete $scope.firebaseFriends[index];
+								delete $scope.facebookFriends[index];
 
 							}
 							else if(doubleFriend === true){
-								// console.log("here");
-								$scope.facebookFriends = $scope.myFriends2[index];
-								delete $scope.myFriends2[index];
-								// console.log($scope.facebookFriends);
+								delete $scope.firebaseFriends[index];
 
+							}
+							else {
+								delete $scope.facebookFriends[index];
+								console.log($scope.facebookFriends);
 							}
 
 						});
 						
 					});
-					console.log($scope.facebookFriends);
+					// console.log($scope.facebookFriends);
 
 		//angular.forEach(Venues.list, function(genre, index){
         //Only add to the availableGenres array if it doesn't already exist
