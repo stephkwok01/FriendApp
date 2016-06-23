@@ -61,6 +61,12 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $firebaseArray, $firebaseObject){
 	//making arrays of objects in firebasef
 	var friendRef = firebase.database().ref().child("Friends");
+	friendRef.on("value", function(snapshot) {
+  		console.log(snapshot.val());
+	});
+
+
+	// console.log(friendRef);
 	//checking if user is signed in or not
 	var auth = $firebaseAuth();
 	auth.$onAuthStateChanged(function(firebaseUser) {
