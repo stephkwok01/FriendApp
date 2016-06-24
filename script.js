@@ -100,37 +100,68 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 					var friend1 = $firebaseObject(fref); 
 
 					$scope.rawFBFriends = response.data;
+					console.log($scope.rawFBFriends);
 
 					friendRef.on("value", function(snapshot) {
 
-						var doubleFriend = false;
+						var doubleFriend = "";
+						$scope.firebaseFriends = snapshot.val();
+						$scope.facebookFriends = snapshot.val();	
 				
-						$scope.firebaseFriends = snapshot.exportVal();
-						$scope.facebookFriends = snapshot.exportVal();
-						angular.forEach($scope.firebaseFriends, function(firefriend, index){
+						
+						angular.forEach($scope.facebookFriends, function(firefriend, index1){
 							// console.log(firefriend.name);
 							
-							angular.forEach($scope.rawFBFriends, function(facefriend, index){
+							angular.forEach($scope.rawFBFriends, function(facefriend, index2){
 								// console.log(facefriend.name);
 									if(angular.equals(firefriend.name, facefriend.name)){
-										doubleFriend = true;	
+										doubleFriend = $scope.facebookFriends[index1];
+										// console.log(doubleFriend);
+
+										//if a firebase 2 degree is a facebook friend
+										//delete that friend from firebase index
+										delete $scope.firebaseFriends[index1];
+										// console.log($scope)
 									}
+									// need to delete firebase 2 degree from a facebook friend
 								});
 							if(angular.equals(firefriend.name, user.name)){
-								delete $scope.firebaseFriends[index];
-								delete $scope.facebookFriends[index];
+								delete $scope.facebookFriends[index1];
+								delete $scope.firebaseFriends[index1];
+								
 
 							}
-							else if(doubleFriend === true){
-								delete $scope.firebaseFriends[index];
 
-							}
-							else {
-								delete $scope.facebookFriends[index];
-							}
 						});
-					});
+						angular.forEach($scope.firebaseFriends, function(firefriend, index1){
+							// console.log(firefriend.name);
+							
+							angular.forEach($scope.facebookFriends, function(facefriend, index2){
+								// console.log(facefriend.name);
+									if(angular.equals(firefriend.name, facefriend.name)){
+										doubleFriend = $scope.facebookFriends[index1];
+										// console.log(doubleFriend);
 
+										//if a firebase 2 degree is a facebook friend
+										//delete that friend from firebase index
+										delete $scope.facebookFriends[index1];
+										// console.log($scope)
+									}
+									// need to delete firebase 2 degree from a facebook friend
+								});
+							if(angular.equals(firefriend.name, user.name)){
+								delete $scope.facebookFriends[index1];
+								delete $scope.firebaseFriends[index1];
+								
+
+							}
+
+						});
+
+					});
+					
+					// return facebookFriends;
+					// return firebaseFriends;
     			});
 				//end of accessing facebook information
 
@@ -151,6 +182,33 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 	//End of sign out
 });
  //end of homeCtrl 
+
+
+ //potential features to add...
+
+ // 1. adding data in each person determining who their friends are
+ // ---- this will be useful when more people are added to the app 
+ //and there is a need to determine whether a person is a 2nd degree
+ //or 3rd degree and so on
+
+ // 2. A proper counter for city, region, and country and degree connections
+
+ // 3. A better location feature, possibly using facebook
+
+ // 4. Domain Name! As well as private policy url so facebook recognizes
+ //the app as a "certified app"
+
+ // 5. Quick message feature
+
+ // 6. Add a link to events via facebook
+
+ // 7. CLick on div of each person...links them to their facebook
+
+ // 8. Security...that is def not a thing right now
+
+
+
+
 
 
 

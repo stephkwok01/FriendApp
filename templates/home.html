@@ -107,11 +107,11 @@
 							<p class="currentlocation"> Facebook Friends </p>
 						</div>
 					</div>
-					<div class="row friendblurb degreemutual" ng-repeat="friend in firebaseFriends" ng-hide="cityLocation !== friend.Location">
-						<div class="col-xs-2"><img class="miniprofilepic" ng-src="{{friend.photo}}"/></div>
+					<div class="row friendblurb degreemutual" ng-repeat="friend1 in firebaseFriends" ng-hide="cityLocation !== friend1.Location">
+						<div class="col-xs-2"><img class="miniprofilepic" ng-src="{{friend1.photo}}"/></div>
 						<div class="col-xs-10 blurbtext">
-							<h3 class="name">{{friend.name}}</h3>
-							<p class="currentlocation"> {{friend.Location}}</p>
+							<h3 class="name">{{friend1.name}}</h3>
+							<p class="currentlocation"> {{friend1.Location}}</p>
 							<p class="currentlocation"> 2&degConnection </p>
 						</div>
 					</div>
