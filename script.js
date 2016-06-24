@@ -100,37 +100,68 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 					var friend1 = $firebaseObject(fref); 
 
 					$scope.rawFBFriends = response.data;
+					console.log($scope.rawFBFriends);
 
 					friendRef.on("value", function(snapshot) {
 
-						var doubleFriend = false;
+						var doubleFriend = "";
+						$scope.firebaseFriends = snapshot.val();
+						$scope.facebookFriends = snapshot.val();	
 				
-						$scope.firebaseFriends = snapshot.exportVal();
-						$scope.facebookFriends = snapshot.exportVal();
-						angular.forEach($scope.firebaseFriends, function(firefriend, index){
+						
+						angular.forEach($scope.facebookFriends, function(firefriend, index1){
 							// console.log(firefriend.name);
 							
-							angular.forEach($scope.rawFBFriends, function(facefriend, index){
+							angular.forEach($scope.rawFBFriends, function(facefriend, index2){
 								// console.log(facefriend.name);
 									if(angular.equals(firefriend.name, facefriend.name)){
-										doubleFriend = true;	
+										doubleFriend = $scope.facebookFriends[index1];
+										// console.log(doubleFriend);
+
+										//if a firebase 2 degree is a facebook friend
+										//delete that friend from firebase index
+										delete $scope.firebaseFriends[index1];
+										// console.log($scope)
 									}
+									// need to delete firebase 2 degree from a facebook friend
 								});
 							if(angular.equals(firefriend.name, user.name)){
-								delete $scope.firebaseFriends[index];
-								delete $scope.facebookFriends[index];
+								delete $scope.facebookFriends[index1];
+								delete $scope.firebaseFriends[index1];
+								
 
 							}
-							else if(doubleFriend === true){
-								delete $scope.firebaseFriends[index];
 
-							}
-							else {
-								delete $scope.facebookFriends[index];
-							}
 						});
-					});
+						angular.forEach($scope.firebaseFriends, function(firefriend, index1){
+							// console.log(firefriend.name);
+							
+							angular.forEach($scope.facebookFriends, function(facefriend, index2){
+								// console.log(facefriend.name);
+									if(angular.equals(firefriend.name, facefriend.name)){
+										doubleFriend = $scope.facebookFriends[index1];
+										// console.log(doubleFriend);
 
+										//if a firebase 2 degree is a facebook friend
+										//delete that friend from firebase index
+										delete $scope.facebookFriends[index1];
+										// console.log($scope)
+									}
+									// need to delete firebase 2 degree from a facebook friend
+								});
+							if(angular.equals(firefriend.name, user.name)){
+								delete $scope.facebookFriends[index1];
+								delete $scope.firebaseFriends[index1];
+								
+
+							}
+
+						});
+
+					});
+					
+					// return facebookFriends;
+					// return firebaseFriends;
     			});
 				//end of accessing facebook information
 
