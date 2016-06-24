@@ -153,6 +153,33 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
  //end of homeCtrl 
 
 
+ //potential features to add...
+
+ // 1. adding data in each person determining who their friends are
+ // ---- this will be useful when more people are added to the app 
+ //and there is a need to determine whether a person is a 2nd degree
+ //or 3rd degree and so on
+
+ // 2. A proper counter for city, region, and country and degree connections
+
+ // 3. A better location feature, possibly using facebook
+
+ // 4. Domain Name! As well as private policy url so facebook recognizes
+ //the app as a "certified app"
+
+ // 5. Quick message feature
+
+ // 6. Add a link to events via facebook
+
+ // 7. CLick on div of each person...links them to their facebook
+
+ // 8. Security...that is def not a thing right now
+
+
+
+
+
+
 
 
 
