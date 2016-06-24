@@ -11,12 +11,16 @@ app.config(function($routeProvider) {
   })
 }); //end of config
 
+//declaring access token variable --> will change for user upon login
 var access = '';
+
 //login page controller
 app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObject,$http,$window){
 
+	//setting on first login that the user location is lost
 	$scope.cityLocation = "Lost";
-	// adding background images
+
+	// adding background images and randomizing then on login page
 	var images = ['1.jpg', '2.jpg', '3.jpg', '4.jpg', '5.jpg', '6.jpg', '7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg',
 	'13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg', '21.jpg', '22.jpg', '23.jpg', '24.jpg',
 	'25.jpg', '26.jpg', '27.jpg', '28.jpg', '29.jpg', '30.jpg', '31.jpg', '32.jpg', '33.jpg', '34.jpg', '35.jpg', ];
@@ -43,7 +47,7 @@ app.controller("loginCtrl", function($scope,$location,$firebaseAuth,$firebaseObj
 			var fbUser = result.user;
 			access = result.credential.accessToken;
 			
-			//store this in firebase -> by Gabe
+			//storing user information in firebase -> by Gabe
 			var ref = firebase.database().ref().child('Friends').child(fbUser.uid);
 			var user = $firebaseObject(ref);
 			user.uid = fbUser.uid;
@@ -62,41 +66,42 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 	//making arrays of objects in firebasef
 	var friendRef = firebase.database().ref().child("Friends");
 
-	//checking if user is signed in or not
+	//checking if user is signed in or not and gathering information if they are signed in
 	var auth = $firebaseAuth();
 	auth.$onAuthStateChanged(function(firebaseUser) {
 		if (firebaseUser) {
 			$scope.firebaseUser = firebaseUser;
+
 			// added code from Gabe --> getting the accses token from the database so that
 			// you don't have to relogin in everytime you want use the site
 			var uref = firebase.database().ref().child("Friends").child(firebaseUser.uid);
 			var user = $firebaseObject(uref);
 			user.$loaded().then(function() {
 			// end of added code
+
 				//choosing city from user
 				$scope.cities = ["Lost","Cape Town", "Melbourne", "Park City", "Shanghai", "Hong Kong", "New York"];
 				$scope.cityLocation = user.Location;
+
 				$scope.addLocation = function(){
 					uref.child('Location').set($scope.cityLocation);
 				}
+				//end of choosing city from user
 
-
-
+				//accessing facebook information on user and friends
 				var token = user.token;
 				FB.api('/me', 'get', {access_token: token}, function(result){
-
+					$scope.me = result;
 				})
+
 				FB.api('/me/friends', 'get', {access_token: token},  function(response) {
-					console.log(response);
 					$scope.friendID = response.data[0].id;
 					var fref = firebase.database().ref().child("Friends").child($scope.friendID);
 					var friend1 = $firebaseObject(fref); 
 
 					$scope.rawFBFriends = response.data;
-					// $scope.facebookFriends = {};
 
 					friendRef.on("value", function(snapshot) {
-						// console.log(snapshot.exportVal());
 
 						var doubleFriend = false;
 				
@@ -127,12 +132,15 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 					});
 
     			});
+				//end of accessing facebook information
+
 			});
 		}
 		else {
 			$location.path("/");
 		}
 	});
+	//end of checking if signed in and gathering information if they are
 
 
 	//sign out button 
@@ -140,15 +148,9 @@ app.controller("homeCtrl", function($scope, $http, $location, $firebaseAuth, $fi
 		auth.$signOut();
 		$location.path("/");
 	}
+	//End of sign out
 });
  //end of homeCtrl 
-
-//  app.filter('custom', function() {
-// 	result = user;
-// 	console.log(user);
-// 	return result;
-											
-// });
 
 
 
